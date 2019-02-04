@@ -1,7 +1,12 @@
-<apex:page standardController="Case" tabStyle="Case" lightningStylesheets="true" id="mainPage" title="Close Case">
+<apex:page standardController="Case" 
+           tabStyle="Case" 
+           lightningStylesheets="true" 
+           id="mainPage" 
+           title="Close Case">
 
     <!-- JQuery Plugin to -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+    </script>
     
     <!-- Custom styling to make the page as per your choice-->
     <style>
@@ -39,33 +44,68 @@
 
             <!-- Sections for the close case with thier particular fieldSets -->
             <!-- Section 1 -->
-            <apex:pageBlockSection title="Case Information" collapsible="false" columns="2" id="firstSection">
-                <apex:repeat value="{!$ObjectType.Case.FieldSets.CloseCaseInformationFields}" var="field">
-                    <apex:Inputfield styleClass="{!field.Label}" value="{!Case[field]}" required="{!OR(field.required, field.dbrequired,field.Label == 'Status',field.Label == 'Version',field.Label == 'Case Type',field.Label == 'Product', field.Label == 'Component', field.Label == 'Resolution Code', field.Label == 'Contact ID')}"/>
+            <apex:pageBlockSection title="Case Information" 
+                                   collapsible="false" 
+                                   columns="2" id="firstSection">
+                <apex:repeat value="{!$ObjectType.Case.FieldSets.CloseCaseInformationFields}" 
+                             var="field">
+                    <apex:Inputfield styleClass="{!field.Label}" 
+                                     value="{!Case[field]}" 
+                                     required="{!OR(field.required, 
+                                               field.dbrequired,
+                                               field.Label == 'Status',
+                                               field.Label == 'Version',
+                                               field.Label == 'Case Type',
+                                               field.Label == 'Product', 
+                                               field.Label == 'Component', 
+                                               field.Label == 'Resolution Code', 
+                                               field.Label == 'Contact ID')}"/>
                 </apex:repeat>
             </apex:pageBlockSection>
 
             <!--Section 2-->
-            <apex:pageBlockSection title="Enter Your Feedback on Case Contact" collapsible="false" columns="2">
-                <apex:repeat value="{!$ObjectType.Case.FieldSets.CloseCaseFeedbackFields}" var="field"> 
+            <apex:pageBlockSection title="Enter Your Feedback on Case Contact" 
+                                   collapsible="false" 
+                                   columns="2">
+                <apex:repeat value="{!$ObjectType.Case.FieldSets.CloseCaseFeedbackFields}" 
+                             var="field"> 
                     <apex:Inputfield value="{!Case[field]}"/>
                 </apex:repeat>
             </apex:pageBlockSection>
 
             <!-- Standard Save and Cancel Button -->
             <apex:pageBlockButtons location="both" >
-                <apex:commandButton action="{!Save}" title="Save" value="Save" status="status" rerender="mainForm"/>
-                <apex:commandButton action="{!Cancel}" title="Cancel" value="Cancel"/>
+                <apex:commandButton action="{!Save}" 
+                                    title="Save" 
+                                    value="Save" 
+                                    status="status" 
+                                    rerender="mainForm"/>
+                <apex:commandButton action="{!Cancel}" 
+                                    title="Cancel" 
+                                    value="Cancel"/>
             </apex:pageBlockButtons>
         </apex:pageBlock>
 
         <!-- To show a lightning like spinner on the page while record get saved-->
         <apex:actionStatus id="status">
             <apex:facet name="start">
-            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
+            <div style="position: fixed; 
+                        top: 0; 
+                        left: 0; 
+                        right: 0;
+                        bottom: 0; 
+                        opacity: 0.75;
+                        z-index: 1000; 
+                        background-color: black;">
                 &nbsp;
             </div>
-            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 10% 50%">
+            <div style="position: fixed; 
+                        left: 0; 
+                        top: 0; 
+                        bottom: 0; 
+                        right: 0; 
+                        z-index: 1001;
+                        margin: 10% 50%">
                 <div class="demo-only">
                   <div role="status" class="slds-spinner slds-spinner_medium">
                     <span class="slds-assistive-text">Loading</span>
@@ -79,14 +119,14 @@
     </apex:form>
 
     <!-- JQuery Script to show only picklist values which have 'Closed' value, hide others -->
-   <script type="text/javascript">
-       $(document).ready(function(){
-           $(".Status option").each(function(){
-               if($(this).val().toLowerCase().indexOf('closed') == -1){
-                   var optionSelector = ".Status option[value='"+ $(this).val() +"']";
-                   $(optionSelector).wrap( "<span>" );
-               }
-           });
+<script type="text/javascript">
+    $(document).ready(function(){
+       $(".Status option").each(function(){
+           if($(this).val().toLowerCase().indexOf('closed') == -1){
+               var optionSelector = ".Status option[value='"+ $(this).val() +"']";
+               $(optionSelector).wrap( "<span>" );
+           }
        });
-    </script>
+    });
+</script>
 </apex:page>

@@ -39,7 +39,8 @@
         <apex:sectionHeader title="Close Case"/>
         <apex:pageBlock title="Case Edit" id="mainBlock" mode="edit">
 
-            <!-- To show validation error on the page, out of the box from standard controller -->
+            <!-- To show validation error on the page, out of the 
+                      box from standard controller -->
             <apex:pagemessages />
 
             <!-- Sections for the close case with thier particular fieldSets -->
@@ -47,8 +48,8 @@
             <apex:pageBlockSection title="Case Information" 
                                    collapsible="false" 
                                    columns="2" id="firstSection">
-                <apex:repeat value="{!$ObjectType.Case.FieldSets.CloseCaseInformationFields}" 
-                             var="field">
+              <apex:repeat value="{!$ObjectType.Case.FieldSets.CloseCaseInformationFields}" 
+                           var="field">
                     <apex:Inputfield styleClass="{!field.Label}" 
                                      value="{!Case[field]}" 
                                      required="{!OR(field.required, 
@@ -60,7 +61,7 @@
                                                field.Label == 'Component', 
                                                field.Label == 'Resolution Code', 
                                                field.Label == 'Contact ID')}"/>
-                </apex:repeat>
+              </apex:repeat>
             </apex:pageBlockSection>
 
             <!--Section 2-->
@@ -86,7 +87,8 @@
             </apex:pageBlockButtons>
         </apex:pageBlock>
 
-        <!-- To show a lightning like spinner on the page while record get saved-->
+        <!-- To show a lightning like spinner on the page 
+             while record get saved-->
         <apex:actionStatus id="status">
             <apex:facet name="start">
             <div style="position: fixed; 
@@ -118,7 +120,8 @@
         </apex:actionStatus>
     </apex:form>
 
-    <!-- JQuery Script to show only picklist values which have 'Closed' value, hide others -->
+    <!-- JQuery Script to show only picklist values
+           which have 'Closed' value, hide others -->
 <script type="text/javascript">
     $(document).ready(function(){
        $(".Status option").each(function(){
